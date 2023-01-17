@@ -15,13 +15,19 @@ import "./index.css";
 //to get our protected routes to scale we created a ProtectedRoute.js
 export const Home = () => {
     const { value } = useAuth();
-    return (
-      <>
-        <h2>Home (Public)</h2>
-        <SignIn></SignIn>
-        {/* <button type="button" onClick={value.onLogin}>
-          Sign In
-        </button> */}
-    </>
-  );
+    if(value.token){
+      return (<h2> You are authenticated and no log in from
+        will appear until you sign out.
+      </h2>)  
+    }else{
+      return (
+        <>
+          <h2>Home (Public)</h2>
+          <SignIn></SignIn>
+          {/* <button type="button" onClick={value.onLogin}>
+            Sign In
+          </button> */}
+      </>
+      );
+    }  
   };
